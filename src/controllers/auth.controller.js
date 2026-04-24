@@ -13,12 +13,21 @@ const register = async (req, res, next) => {
 
 const login = async (req, res, next) => {
     try {
-        const {user, token} = await authService.loginUser(req.body);
+        const { user, token } = await authService.loginUser(req.body);
+        res.cookie(
+            "token",
+            token,
+            {
+                httpOnly: true,
+                secure: false,
+                sameSite: "strict",
+                maxAge: 7 * 24 * 60 * 60 * 100
+            }
+        );
         return successResponse(
             res,
             {
-                user,
-                token
+                user
             },
             'Logged in Successfully',
             STATUS_CODE.OK
@@ -28,7 +37,17 @@ const login = async (req, res, next) => {
     }
 }
 
+const getCurrentUser = async (req, res, next) => {
+    try {
+        const user = await authService.getUserById(req.user._id);
+        return successResponse(res, user, 'User fetched', STATUS_CODE.OK);
+    } catch (error) {
+        next(error);
+    }
+}
+
 module.exports = {
     register,
-    login
+    login,
+    getCurrentUser
 }

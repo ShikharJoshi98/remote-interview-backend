@@ -63,7 +63,18 @@ async function loginUser(data) {
 }
 
 async function getUserById(id) {
-    return await authRepository.getById(id);
+    try {
+        const user = await authRepository.getById(id);
+        if (!user) {
+            throw new AppError("User not found", STATUS_CODE.NOT_FOUND);
+        }
+        return user;
+    } catch (error) {
+        if (error instanceof AppError) {
+            throw error;
+        }
+        throw new AppError("Error fetching current user", STATUS_CODE.INTERNAL_SERVER_ERROR);
+    }
 }
 
 module.exports = {
