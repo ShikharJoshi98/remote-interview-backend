@@ -37,6 +37,15 @@ const login = async (req, res, next) => {
     }
 }
 
+const logout = async (req, res, next) => {
+    try {
+        res.clearCookie("token");
+        return successResponse(res, null, 'Logged out successfully', STATUS_CODE.OK);
+    } catch (error) {
+        next(error);
+    }
+}
+
 const getCurrentUser = async (req, res, next) => {
     try {
         const user = await authService.getUserById(req.user._id);
@@ -49,5 +58,6 @@ const getCurrentUser = async (req, res, next) => {
 module.exports = {
     register,
     login,
-    getCurrentUser
+    getCurrentUser,
+    logout
 }

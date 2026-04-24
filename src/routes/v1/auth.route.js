@@ -17,6 +17,10 @@ router.post('/login',
 router.get('/authenticate',
     authMiddleware.protect,
     authController.getCurrentUser
-)
+);
+
+router.post('/logout',
+    authController.logout
+);
 
 module.exports = router;
