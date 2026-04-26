@@ -8,4 +8,6 @@ const successResponse = (res, data, message, statusCode) => {
         });
 };
 
-module.exports = successResponse;
+module.exports = {
+    successResponse
+};

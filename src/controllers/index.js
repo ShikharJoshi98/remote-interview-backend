@@ -1,3 +1,4 @@
 module.exports = {
-    authController: require('./auth.controller')
+    authController: require('./auth.controller'),
+    interviewController: require('./interview.controller')
 }

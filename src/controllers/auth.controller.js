@@ -1,4 +1,4 @@
-const successResponse = require("../constants/response");
+const {successResponse} = require("../constants/response");
 const STATUS_CODE = require("../constants/statusCode");
 const { authService } = require("../services")
 

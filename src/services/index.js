@@ -1,3 +1,4 @@
 module.exports = {
-    authService: require('./auth.service')
+    authService: require('./auth.service'),
+    interviewService: require('./interview.service')
 }

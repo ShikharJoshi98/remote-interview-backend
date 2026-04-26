@@ -1,3 +1,4 @@
 module.exports = {
-    AuthRepository: require('./auth.repository')
+    AuthRepository: require('./auth.repository'),
+    InterviewRepository: require('./interview.repository')
 };
